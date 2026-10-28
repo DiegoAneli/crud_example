@@ -2,18 +2,22 @@
   "todos": [
     {
       "title": "andare a pranzo",
+      "completed": true,
       "id": "lson6OzkoZk"
     },
     {
       "title": "imparare lo sloveno",
+      "completed": true,
       "id": "EuNSBcOaohQ"
     },
     {
       "title": "portare tito a spasso",
+      "completed": true,
       "id": "HXXfYDa209k"
     },
     {
       "title": "insegnare React alla classe",
+      "completed": true,
       "id": "D7EjebN8_Hc"
     }
   ],

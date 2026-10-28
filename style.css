@@ -18,6 +18,8 @@ body{
     padding: 30px;
     border-radius: 12px;
     margin: 0 auto;
+    border: 2px solid blue;
+    
     
 
 }
@@ -26,15 +28,18 @@ h1 {
 
     color: red;
     text-align: center;
+    font-size: 40px;
+    font-weight: 800;
 
 }
 
 #new-task {
 
-    width: 70%;
+    width: 100%;
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 8px;
+    
 }
 
 #add-task {
@@ -44,6 +49,9 @@ h1 {
     border-radius: 8px;
     color: blue;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
 }
 
 
@@ -53,4 +61,41 @@ h1 {
 
 }
 
+.ombra, li{
 
+    box-shadow: 10px 5px 5px rgb(108, 128, 75);
+}
+
+ul {
+
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+    
+}
+
+li {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+
+li button {
+
+    margin-left: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 10px 5px 5px rgb(43, 43, 48);
+}
+
+
+
+li span.done {
+
+    text-decoration: line-through;
+}

@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //endpoint servito dalla libreria json-server
     const API_URL = 'http://localhost:3000/todos';
-
     //questa è la ul
     const taskList = document.getElementById('task-list');
     //questa è l input
@@ -11,14 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     //questa è del button add task
     const addTaskBtn = document.getElementById('add-task');
 
-
+    //FUNZIONE PRINCIPALE DI FETCH
     function fetchTasks(){ 
     
         fetch(API_URL)
 
         .then(res => res.json()) //converte la risposta in formato json
         .then(data => { // una volta ottenuto i dati
-
 
             //console.log(data);
             //svuotare la tabella
@@ -37,13 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 span.textContent = task.title
 
 
+                if(task.completed) {
+                    span.classList.add('done');
+                }
+
                 //bottone di flag complete
                 const editBtn = document.createElement('button');
                 editBtn.classList.add('toggle');
                 editBtn.textContent = '✅';
+                editBtn.onclick = () => toggleComplete(task);
+
                 
-
-
                 //bottone di edit
                 const toggleBtn = document.createElement('button');
                 toggleBtn.classList.add('toggle');
@@ -63,16 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 //appendo all html il titolo del task
                 li.append(span, btnGroup);
                 taskList.appendChild(li);
-
-
-
                 
             });
 
-
         })
     }
-
 
     addTaskBtn.addEventListener('click', () => {
 
@@ -116,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-
+    //FUNZIONE DI DELETE (CANCELLARE TASK)
     function deleteTask(id){
 
         fetch(`${API_URL}/${id}`, {
@@ -130,9 +127,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    //FUNZIONE DI UPDATE PER CAMBIARE STATO DONE NOTDONE
+    function toggleComplete(task){
+        
+        
+            fetch(`${API_URL}/${task.id}`, {
 
+                method: 'PUT', //METODO CHE MODIFICA UN TITOLO
+                headers: {'Content-type' : 'application/json'},
+                body: JSON.stringify({...task, completed: !task.completed}) //crea il task
+            }).then(() =>{
+                //ricarico i tasks con il nuovo task aggiunto
+                fetchTasks();
+            })
+        
 
+    }
 
-fetchTasks();
+    //RICHIAMO FUNZIONE FETCH()
+    fetchTasks();
 
 });
